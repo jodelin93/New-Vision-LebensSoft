@@ -20,7 +20,6 @@ MISSION DE VIE qui est une organisation qui évolue dans le domaine social en Ha
 ### Éléments de la définition de « terminé » pour les documents
 - Tous les membres de l’équipe ont relu le document pour vérifier que ces critères ont tous été respectés:
    - Complet, clair, cohérent, pertinent, bref et concis.
-   
-      -Ce qui nous fait un total de 6 critères de validation et nous sommes 6 membres dans l’équipe. Chaque membre aura choisi un critère et aura lu le document en entier afin de voir si le critère qu’il a choisi a été respecté.
+      - Ce qui nous fait un total de 6 critères de validation et nous sommes 6 membres dans l’équipe. Chaque membre aura choisi un critère et aura lu le document en entier afin de voir si le critère qu’il a choisi a été respecté.
 - Le document est conforme aux règles, normes, directives, plans et procédures liés à ce livrable.
 
