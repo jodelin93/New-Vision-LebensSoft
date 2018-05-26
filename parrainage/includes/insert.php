@@ -11,7 +11,7 @@
 	$er= 0;
 
 
-if (isset($_POST['nom_par']) and !empty($_POST['nom_par'])) {
+if (isset($_POST['nom_par']) and $_POST['nom_par']!="") {
 	
 			$id = $core->selectData("parrain", "count(*) qtep", NULL, NULL, NULL);
 				foreach ($id as $key => $value) {
@@ -58,7 +58,7 @@ if (isset($_POST['nom_par']) and !empty($_POST['nom_par'])) {
 	
 
 	// $des="desactiver";
-			$resu='Enregistremeent Reussie';
+			$resu='Enregistrement Reussie';
 			$fieldd = array("idParrain","nom_par","prenom_par","adresse_par","sexe","telephone","email","profession","etat_civil","nationalite","photo_parrain");
 			$data = array("'".$idParrain."'","'".$nom_par."'","'".$prenom_par."'","'".$adresse_par."'","'".$sexe."'","'".$telephone."'","'".$email."'","'".$profession."'","'".$etat_civil."'","'".$nationalite."'","'".$f."'");
 			$insert = $core->insertData('parrain', $fieldd, $data);
