@@ -1,67 +1,83 @@
 <?php
-  session_start();
-  
-  include("class/Core.php");
-  include("includes/constantes.php");
-  $etat = "actif";
-  $core = new Core();
-  if (isset($_SESSION['nom_user'])) {
-
-  header("location:main.php");
-  }
-
-  if (isset($_POST['conn']) and !empty($_POST['pwd'])){
-
-      $fieldname = array('login', 'etat');
-      $pwd = $_POST['pwd'];
-      $username = $_POST['username'];
-      $fieldvalue = array($username, $etat);
-      $condition = "login = "."'".$username."'"." and etat = "."'actif'"." and utilisateur.idEmp= employer.idEmp";
-     
-
-      $res = $core->selectData('utilisateur, employer',NULL, $condition, NULL, NULL);
-
-      foreach ($res as $res_rek) {
-       
-          $pass = $res_rek->password ;
-          $id = $res_rek->idEmp;
-          $username = $res_rek->login;
-          $fct = $res_rek->fonction;
-          $nom = $res_rek->nom_emp;
-          $pnom = $res_rek->prenom_emp;
-          $departement = $res_rek->departement;
-          $photo = $res_rek->photo;
-          $droit = $res_rek->droit;
-       
-      }
-
-       if(isset($pass) and $pass == $pwd){
-          $_SESSION['connecte'] = time();
-          $_SESSION['iduser'] = $id;
-          $_SESSION['nom_user'] = $username;
-          $_SESSION['nom_emp'] = $pnom." ".$nom;
-          //$_SESSION['prenom_user'] = $pnom;
-          $_SESSION['fonction'] = $fct;
-          $_SESSION['dept'] = $departement;
-          $_SESSION['photo']=$photo;
-          $_SESSION['droit'] = $droit;
+   session_start();
+   $pass_error = NULL;
+   $util_error = NULL;
+   $etat_error = NULL;
+   include("class/Core.php");
+   include("includes/constantes.php");
+   $etat = "actif";
+   $core = new Core();
+   $er = 0;
+   if (isset($_SESSION['nom_user'])) {
+ 
+   header("location:main.php");
+   }
+ 
+   if (isset($_POST['conn']) and !empty($_POST['pwd'])){
+ 
+       $fieldname = array('login');
+       $pwd = $_POST['pwd'];
+       $username = $_POST['username'];
+       $fieldvalue = array($username);
+       $condition = "login = "."'".$username."'"." and utilisateur.idEmp= employer.idEmp";
+      
+ 
+       $res = $core->selectData('utilisateur, employer',NULL, $condition, NULL, NULL);
+ 
+       if (!$res) {
+        
+       $util_error = "Compte utilisateur inexistant!";
+       $er++;
+       }
+ 
+ 
+       foreach ($res as $res_rek) {
+        
+           $pass = $res_rek->password ;
+           $id = $res_rek->idEmp;
+           $username = $res_rek->login;
+           $fct = $res_rek->fonction;
+           $nom = $res_rek->nom_emp;
+           $pnom = $res_rek->prenom_emp;
+           $departement = $res_rek->departement;
+           $photo = $res_rek->photo;
+           $droit = $res_rek->droit;
+           $etat = $res_rek->etat;
+        
+       }
+         if ($etat =="Desactiver") {
+          $etat_error = "Compte utilisateur inactif!";
+          $er++;
+         }
+ 
+ 
+        if(isset($pass) and $pass != $pwd){
+            $pass_error = "Mauvais mot de passe";
+             $er++;
+           }
+ 
+         if ($er == 0) {
+           
          
-          echo'
-             <script language="Javascript">
-                 <!--
-                       document.location.replace("main.php");
-                 // -->
-           </script>';
-        }else{
-
-        ?>
-        <script>
-          alert("une erreur s'est produite pendant votre identification. Veuillez verifier votre mot de passe ou contacter l'administrateur");
-       </script>
-     <?php
-      }
-  }
-?>
+           $_SESSION['connecte'] = time();
+           $_SESSION['iduser'] = $id;
+           $_SESSION['nom_user'] = $username;
+           $_SESSION['nom_emp'] = $pnom." ".$nom;
+           //$_SESSION['prenom_user'] = $pnom;
+           $_SESSION['fonction'] = $fct;
+           $_SESSION['dept'] = $departement;
+           $_SESSION['photo']=$photo;
+           $_SESSION['droit'] = $droit;
+          
+           echo'
+              <script language="Javascript">
+                  <!--
+                        document.location.replace("main.php");
+                  // -->
+            </script>';
+         }
+   }
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -194,6 +210,26 @@
 </div>
 <!-- /.login-box -->
 </div>
+<div class="modal modal-danger fade messagec" id="default">
+  
+  <div class="modal-dialog">
+
+    <div class="modal-content" >
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"> <h4><i class="icon fa fa-ban"></i> Alert!</h4></h4>
+   
+      </div>
+      <div class="modal-body">
+
+  <?php echo "-".$etat_error."<br/>"; ?>
+ 
+     <?php echo "-".$util_error."<br/>"; ?>
+    <?php echo "-".$pass_error."<br/>"; ?>
+   
+</div> </div> </div> </div>
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -223,16 +259,23 @@
  
 
    // To make Pace works on Ajax calls
-  $(document).ajaxStart(function () {
-    Pace.restart()
-  })
-  $('.ajax').click(function () {
-    $.ajax({
-      url: 'main.php', success: function (result) {
-        
-      }
-    })
-  })
+   $(function () {
+
+<?php 
+    if ($er != 0) {
+?>
+
+$('#default').modal('show');
+
+<?php
+     }
+?>
+$('input').iCheck({
+  checkboxClass: 'icheckbox_square-blue',
+  radioClass: 'iradio_square-blue',
+  increaseArea: '20%' // optional
+});
+});
 </script>
 </body>
 </html>
