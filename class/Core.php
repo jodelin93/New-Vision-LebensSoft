@@ -15,7 +15,7 @@
 				$data = implode(',', $data);
 
 				$sql = "INSERT into ".$table." (".$field.") "."VALUES"." (".$data.")";
-				var_dump($sql); 
+				// var_dump($sql); 
 				$req = $this->_conn->prepare($sql);
 				$req->execute();
 

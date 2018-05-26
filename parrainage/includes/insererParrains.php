@@ -81,8 +81,8 @@
                 </div>
               </div>
               <!-- /.box-body -->
-              <input type="text" class="form-control" name="result" id="result">
-               <input type="text" class="form-control" name="df" id="messenrt">
+              <input type="hidden" class="form-control" name="result" id="result">
+               <input type="hidden" class="form-control" name="df" id="messenrt">
               <div id=""></div>
               <div class="box-footer">
                 <input type="submit" id="Enregistrer" name="Enregistrer" class="btn btn-primary pull-right" value="Enregistrer" />
