@@ -16,7 +16,7 @@
    if (isset($_POST['conn']) and !empty($_POST['pwd'])){
  
        $fieldname = array('login');
-       $pwd = $_POST['pwd'];
+       $pwd = sha1($_POST['pwd']);
        $username = $_POST['username'];
        $fieldvalue = array($username);
        $condition = "login = "."'".$username."'"." and utilisateur.idEmp= employer.idEmp";
