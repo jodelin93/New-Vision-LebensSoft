@@ -11,6 +11,8 @@
 			$class = "fa-child";
 		}elseif ($dept == "Parrainage") {
 			$class = "fa-group";
+		}elseif ($dept == "Ressources Humaines") {
+			$class = "fa-address-book-o";
 		}
 
 

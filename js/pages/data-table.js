@@ -5,7 +5,10 @@
 $(function () {
     "use strict";
 	
+   
     $('#example1').DataTable();
+    $('#example99').DataTable();
+
     $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': false,
@@ -15,6 +18,7 @@ $(function () {
       'autoWidth'   : false
     });
 	
+  
 	
 	$('#example').DataTable( {
 		dom: 'Bfrtip',

@@ -1,9 +1,10 @@
 $(document).ready(function (e) {
 	// parrainListe();
-	
+
 
 $("#insererParrain").on('submit',(function(e) {
 e.preventDefault();
+
 $("#result").empty();
 $.ajax({
 	
@@ -15,16 +16,21 @@ cache: false,
 processData:false,       
 success: function(data){
 //var ui=""+data+"";
-// document.getElementById('result').value =data;
-// if(document.getElementById('result').value=="Enregistrement Reussie"){
-//$("#messenrt").html("enregistrement reussi");	
-$('#tabs a[href="#tab_2"]').tab('show');
-// parrainListe();
+$("#msgInsertionParrain").html(data);
+$('#msgModal').modal('show');
+// document.getElementById("messenrthh").value =""+data+"";
+// var gs=document.getElementById("messenrthh").value;
+//alert(gs);
+var hg = html(data);
+alert(hg);
+if(data=="Enregistrement Reussi"){
+// $("#errorrr").html("enregistrement reussi");	
 vider();
-// }
-// else{
-	// $("#messenrt").html(data);
-// }
+}
+else{
+	// $("#errorrr").html(data);
+}
+
 }
 });
 }));
@@ -32,34 +38,58 @@ vider();
 
 
 
-function vider(){
-	document.getElementById('nom_par').value = "";
-	document.getElementById('prenom_par').value = "";
-	document.getElementById('adresse_par').value = "";
-	document.getElementById('sexe').value = "";
-	document.getElementById('telephone').value = "";
-	document.getElementById('email').value = "";
-	document.getElementById('profession').value = "";
-	document.getElementById('etat_civil').value = "";
-	document.getElementById('nationalite').value = "";
-	
-}
+$("#formajouterlettre").on('submit',(function(e) {
+    e.preventDefault();       
+    $.ajax({
+        
+    url: "includes/insertLettre.php", 
+    type: "POST",             
+    data: new FormData(this), 
+    contentType: false,       
+    cache: false,             
+    processData:false,       
+    success: function(data){
+      if(data=="Enregistrement Reussi"){
+        $("#formajouterlettre").value="";
+        conversation();
+      }
+
+    $("#msgLettreRep").html(data);
+    
+     }
+    });
+    }));
+
+    function conversation(){
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function(){
+        if(this.readyState==4 && this.status == 200){
+          document.getElementById('listeConversationAjax').innerHTML=this.responseText;
+        }
+      }
+      xmlhttp.open("GET", "includes/conversationAjax.php", true);
+      xmlhttp.send();
+    }
+
+// $('#tabs a[href="#tab_2"]').tab('show');
+});
 
 
-$("#tab_2").click(function(){
+$("#tabP").click(function(){
 
        var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("listeparrain").innerHTML = this.responseText;
+                document.getElementById("listeParrainAjax").innerHTML=this.responseText;
             }
         };
-        xmlhttp.open("GET", "includes/listerParrain.php", true);
+        xmlhttp.open("GET", "includes/pageAjax.php", true);
         xmlhttp.send();
 
      
     }); 
 
-});
+
+// listParrain();
 
   

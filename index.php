@@ -16,7 +16,7 @@
    if (isset($_POST['conn']) and !empty($_POST['pwd'])){
  
        $fieldname = array('login');
-       $pwd = sha1($_POST['pwd']);
+       $pwd =sha1($_POST['pwd']);
        $username = $_POST['username'];
        $fieldvalue = array($username);
        $condition = "login = "."'".$username."'"." and utilisateur.idEmp= employer.idEmp";
@@ -132,10 +132,10 @@
   <link rel="stylesheet" href="<?php echo ROOT; ?>css/w3.css">
 
   <!-- Theme style -->
-  <link rel="stylesheet" href="../css/master_style.css">
+  <link rel="stylesheet" href="css/master_style.css">
 
   <!-- Cross Admin skins -->
-  <link rel="stylesheet" href="../css/skins/_all-skins.css">
+  <link rel="stylesheet" href="css/skins/_all-skins.css">
 
   <link rel="icon" type="image/png" href="<?php echo ROOT; ?>images/lebens_icon.png"/>
 
@@ -147,7 +147,7 @@
   <![endif]-->
 
   <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="<?php echo ROOT; ?>css/font.css">
 </head>
 <body class="" id="bod" style="background:url('images/lebens_background.jpg') no-repeat center fixed;
   background-size: cover;">
@@ -178,15 +178,7 @@
               <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
 
-            <div class="">
-              <div class="">
-                <div class="checkbox icheck">
-                  <label>
-                    <input type="checkbox" class="form-control"> Se souvenir de moi
-                  </label>
-                </div>
-              </div>
-            </div>
+           
 
             <div class="">
               <!-- /.col -->
@@ -197,11 +189,11 @@
               <!-- /.col -->
             </div>
         </form>
-        
+        <br>
         
         <!-- /.social-auth-links -->
 
-        <a href="#">Mot de passe oubli&eacute;</a><br>
+        <a href="#" onclick="motdepasse()">Mot de passe oubli&eacute; ?</a><br>
      <div class="ajax-content">
           </div>
 
@@ -222,7 +214,7 @@
         <h4 class="modal-title"> <h4><i class="icon fa fa-ban"></i> Alert!</h4></h4>
    
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="mod">
 
   <?php echo "-".$etat_error."<br/>"; ?>
  
@@ -230,21 +222,25 @@
     <?php echo "-".$pass_error."<br/>"; ?>
    
 </div> </div> </div> </div>
-<!-- jQuery 3 -->
-<?php  
-include("includes/scripts.php");
-?>
+  <!-- jQuery 3 -->
+  <script src="assets/vendor_components/jquery/dist/jquery.min.js"></script>
+  
+  <!-- Bootstrap 3.3.7 -->
+  <script src="assets/vendor_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  
+  <!-- SlimScroll -->
+  <script src="assets/vendor_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+  
+  <!-- FastClick -->
+  <script src="assets/vendor_components/fastclick/lib/fastclick.js"></script>
+  
+  <!-- Cross Admin App -->
+  <script src="js/template.js"></script>
+  
+  <!-- Cross Admin for demo purposes -->
+  <script src="js/demo.js"></script>
 
 <script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' // optional
-    });
-  });
- 
-
    // To make Pace works on Ajax calls
    $(function () {
 
@@ -257,12 +253,13 @@ $('#default').modal('show');
 <?php
      }
 ?>
-$('input').iCheck({
-  checkboxClass: 'icheckbox_square-blue',
-  radioClass: 'iradio_square-blue',
-  increaseArea: '20%' // optional
+
 });
-});
+
+   function motdepasse(){
+    $("#mod").html("Veuillez contacter l'administrateur du Systeme pour qu'il puisse reinitialiser votre Mot de Passe!!!");
+    $('#default').modal('show');
+   }
 </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<form action="" id="insererParrain" class="form-element" method="post" enctype="multipart/form-data">
+<form method="post" id="insererParrain" class="form-element"  enctype="multipart/form-data">
 	  <!-- left column -->
        <fieldset>
           <div class="col-lg-6">
@@ -40,7 +40,9 @@
                  <div class="form-group">
                   <label for="">Profession</label>
                 <input type="text" class="form-control" name="profession" id="profession" placeholder="Entrer la Profession">
+                     <input type="checkbox" id="" class="chk-col-blue" checked />
                 </div>
+
               
               </div>
               <!-- /.box-body -->
@@ -81,15 +83,14 @@
                 </div>
               </div>
               <!-- /.box-body -->
-              <input type="hidden" class="form-control" name="result" id="result">
-               <input type="hidden" class="form-control" name="df" id="messenrt">
+             
+               <input type="hidden" class="form-control" name="messenrthh" id="messenrthh">
               <div id=""></div>
               <div class="box-footer">
                 <input type="submit" id="Enregistrer" name="Enregistrer" class="btn btn-primary pull-right" value="Enregistrer" />
               </div>
-            
+            <span id="errorrr"></span>
           </div>
         </fieldset>								
 
 </form>
-<pre class='xdebug-var-dump' dir='ltr'><small>C:\wamp64\www\lebenssoft\class\Core.php:18:</small><small>string</small> <font color='#cc0000'>'INSERT into parrain (idParrain,nom_par,prenom_par,adresse_par,sexe,telephone,email,profession,etat_civil,nationalite,photo_parrain) VALUES (&#39;PAR-19&#39;,&#39;erw&#39;,&#39;ewr&#39;,&#39;wer&#39;,&#39;Feminin&#39;,&#39;ewr&#39;,&#39;ghfh@c.ghhfrwe&#39;,&#39;erwrf&#39;,&#39;Marie(e)&#39;,&#39;Equatorial Guinea&#39;,&#39;photo.png&#39;)'</font> <i>(length=251)</i></pre>Enregistremeent Reussie

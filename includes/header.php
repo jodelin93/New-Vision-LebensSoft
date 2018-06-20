@@ -12,8 +12,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="">
   <title>Lebens-Soft | <?php echo $titre;?></title>
-  <!-- bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="<?php echo ROOT; ?>assets/vendor_components/bootstrap/dist/css/bootstrap.css">
+  
+
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="<?php echo ROOT; ?>assets/vendor_components/bootstrap/dist/css/bootstrap.min.css">
+ 
   <!-- font awesome -->
   <link rel="stylesheet" href="<?php echo ROOT; ?>assets/vendor_components/font-awesome/css/font-awesome.css">
   <!-- ionicons -->
@@ -28,6 +31,8 @@
   <link rel="stylesheet" href="<?php echo ROOT; ?>assets/vendor_components/jvectormap/jquery-jvectormap.css">
   <!-- date picker -->
   <link rel="stylesheet" href="<?php echo ROOT; ?>assets/vendor_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+    <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="<?php echo ROOT; ?>css/bootstrap-datetimepicker.min.css">
    <!-- daterange picker -->
   <link rel="stylesheet" href="<?php echo ROOT; ?>assets/vendor_components/bootstrap-daterangepicker/daterangepicker.css">
    <!-- bootstrap wysihtml5 - text editor -->
@@ -55,12 +60,19 @@
   <link rel="stylesheet" href="<?php echo ROOT; ?>assets/vendor_plugins/bootstrap-slider/slider.css">
 
   <link rel="stylesheet" href="<?php echo ROOT; ?>css/font.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Montserrat:300,600'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css'>
  
   <link rel="stylesheet" href="<?php echo ROOT; ?>css/w3.css">
-
+  <link rel="stylesheet" href="<?php echo ROOT; ?>css/style.css">
+  <link rel="stylesheet" href="<?php echo ROOT; ?>css/styl.css">
+  <link rel="stylesheet" href="<?php echo ROOT; ?>css/normalise.css">
+  <link rel="stylesheet" href="<?php echo ROOT; ?>css/popup.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../css/master_style.css">
-
+  <link rel="icon" type="image/png" href="<?php echo ROOT; ?>images/lebens_icon.png"/>
   <!-- Cross Admin skins -->
   <link rel="stylesheet" href="../css/skins/_all-skins.css">
 
@@ -331,17 +343,16 @@
         </li>
 
         <?php
-          if ($_SESSION['fonction']=="Directeur General") {
-            # code...
-          
+          if ($_SESSION['fonction']=="Directeur General" || $_SESSION['droit']=="Administrateur") {
+     
         ?>
         <li class="<?php if($titre == "Habitat"){ echo "active";} ?>"><a href="<?php echo ROOT; ?>"><i class="fa fa-home"></i> <span>Habitat</span></a></li>
         <li class="<?php if($titre == "Micro Credit"){ echo "active";} ?>"><a href="<?php echo ROOT; ?>"><i class="fa fa-money"></i> <span>Micro Cr&eacute;dit</span></a></li>
         <li class="<?php if($titre == "Orphelinat"){ echo "active";} ?>"><a href="<?php echo ROOT; ?>orphelinat/"><i class="fa fa-child"></i> <span>Orphelinat</span></a></li>
         <li class="<?php if($titre == "Parrainage"){ echo "active";} ?>"><a href="<?php echo ROOT; ?>parrainage/"><i class="fa fa-group"></i> <span>Parrainage</span></a></li>
-
+        <li class="<?php if($titre == "Ressources Humaines"){ echo "active";} ?>"><a href="<?php echo ROOT; ?>ressourceshumaines/"><i class="fa fa-address-book-o"></i> <span>Ressources Humaines</span></a></li>
         <li class="<?php if($titre == "Administration"){ echo "active";} ?>"><a href="<?php echo ROOT; ?>admin/administration.php"><i class="fa fa-gears"></i> <span>Administration</span></a></li>
-    
+            
      
         
         <li class="header">LABELS</li>

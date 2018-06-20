@@ -58,13 +58,14 @@ if (isset($_POST['nom_par']) and $_POST['nom_par']!="") {
 	
 
 	// $des="desactiver";
-			$resu='Enregistrement Reussie';
+			$resu="Enregistrement Reussi";
+
 			$fieldd = array("idParrain","nom_par","prenom_par","adresse_par","sexe","telephone","email","profession","etat_civil","nationalite","photo_parrain");
 			$data = array("'".$idParrain."'","'".$nom_par."'","'".$prenom_par."'","'".$adresse_par."'","'".$sexe."'","'".$telephone."'","'".$email."'","'".$profession."'","'".$etat_civil."'","'".$nationalite."'","'".$f."'");
 			$insert = $core->insertData('parrain', $fieldd, $data);
 
 		if ($insert) {
-			echo $resu;
+			echo "<h5 style='color:green'>".$resu."</h5>";
 		}else{
 			echo "<h5 style='color:red'>Enregistrement Echoue</h5>";
 		}
@@ -77,6 +78,7 @@ if (isset($_POST['nom_par']) and $_POST['nom_par']!="") {
 		
 
 }
+
 
 
 

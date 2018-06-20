@@ -5,7 +5,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example" class="table table-bordered table-hover display nowrap margin-top-10">
+              <table id="exampl" class="table table-bordered table-hover display nowrap margin-top-10">
 				<thead>
 					<tr>
 						<th>Prenom</th>

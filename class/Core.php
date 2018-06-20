@@ -15,15 +15,15 @@
 				$data = implode(',', $data);
 
 				$sql = "INSERT into ".$table." (".$field.") "."VALUES"." (".$data.")";
-				// var_dump($sql); 
 				$req = $this->_conn->prepare($sql);
+				// var_dump($sql);die();
 				$req->execute();
 
-				$msg = "insertion resussie";
+				$msg = "Insertion resussie";
 				
 			}else{
 				$msg ="Insertion echouee";
-
+				
 			}
 			
 			return $msg;
@@ -45,20 +45,21 @@
  				$sql = "SELECT * FROM ".$table. " WHERE ".$fieldname[0]."="."'".$fieldvalue[0]."'"." AND ".$fieldname[1]."="."'".$fieldvalue[1]."'";
  				$stmt = $this->_conn->prepare($sql);
  				
+ 			}elseif (!empty($attribut) and !empty($condition)) {
+ 				$sql = "SELECT ".$attribut." FROM ".$table." WHERE ".$condition;
+ 				$stmt = $this->_conn->prepare($sql);
+ 				// var_dump($sql);
  			}elseif (isset($condition) and !empty($condition)) {
  				$sql = "SELECT * FROM ".$table." WHERE ".$condition;
  				// var_dump($sql);
 
  				$stmt = $this->_conn->prepare($sql);
- 				//var_dump($sql);die;
+ 				// var_dump($sql);
 
  			}elseif (isset($attribut) and !empty($attribut)) {
  				$sql = "SELECT ".$attribut." FROM ".$table;
  				$stmt = $this->_conn->prepare($sql);
  				
- 			}elseif (!empty($attribut) and !empty($condition)) {
- 				$sql = "SELECT ".$attribut." FROM ".$table." WHERE ".$condition;
- 				$stmt = $this->_conn->prepare($sql);
  			}
  			else{
  				$stmt = $this->_conn->prepare("SELECT * FROM ".$table);
@@ -85,7 +86,7 @@
 				}
 
 					$sql = "UPDATE ".$table." set ".$req." WHERE ".$idname." = ".$id;
-					// var_dump($sql);
+					var_dump($sql);
 					$req = $this->_conn->prepare($sql);
 					$req->execute(); 
 				
